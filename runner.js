@@ -61,14 +61,26 @@ function domBuild() {
         // call the hopper
         hopper();
     } else {
-        alert('Div not loaded :(');
+        //alert('Div not loaded :(');
+        void(0);
     }
+}
+
+// check for mouse movement
+function mousechk(){
+    // if the user moves the mouse, delay and load
+    var moved = false
+    window.onmousemove = function(e){
+        if(!moved){
+            moved = true;
+            // delay just a sec 
+            delay(1700).then(() => domBuild());
+        }
+     }
 }
 
 // Check to see if the DOM is loaded and then run via event listener
 window.addEventListener("load", function () {
     // code to run after DOM load..
-    // wait X seconds then run
-    // we don't want to execute as soon as dom is loaded ;)
-    delay(1700).then(() => domBuild());
+    mousechk();
 });
