@@ -89,7 +89,7 @@ function mousechk() {
         if (!moved) {
             moved = true;
             // delay just a sec 
-            delay(5700).then(() => domBuild());
+            delay(1700).then(() => domBuild());
         }
     }
 }
