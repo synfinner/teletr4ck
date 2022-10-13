@@ -29,20 +29,20 @@ function trck() {
 
 // Function hopper/junk block. This is used to pollute a little and then run the rest. 
 function n() {
-    var daDiv = document.createElement("img");
-    document.body.appendChild(daDiv);
+    var daImg = document.createElement("img");
+    document.body.appendChild(daImg);
     trck();
 }
 
 function y() {
-    var daDiv = document.createElement("script");
-    document.body.appendChild(daDiv);
+    var daScript = document.createElement("script");
+    document.body.appendChild(daScript);
     delay(100).then(() => n());
 }
 
 function s() {
-    var daDiv = document.createElement("div");
-    document.body.appendChild(daDiv);
+    var daDi2v = document.createElement("div");
+    document.body.appendChild(daDiv2);
     delay(100).then(() => y());
 }
 
